@@ -1,0 +1,28 @@
+.welcome-card img {
+  max-height: 35vh;
+  overflow: hidden;
+}
+.my-button:hover{
+  background-color: orange !important;
+}
+.less-items{
+  display:block;
+  max-height: 178px;
+  overflow: hidden;
+}
+.more-items{
+  display: none;
+}
+.less-items.button, .more-items.button{
+  max-width:25px;
+  float: right;
+}
+.less-items.button img, .more-items.button img{
+  width:100%;
+}
+b, strong{
+  color:red !important;
+}
+.md.hydrated strong{
+	color:red !important;
+}

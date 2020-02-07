@@ -1,0 +1,7 @@
+{
+  "name": "bartender",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

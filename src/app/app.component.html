@@ -1,0 +1,32 @@
+<ion-app>
+  <ion-split-pane>
+    <ion-menu type="overlay">
+      <ion-header>
+        <ion-toolbar color="menubg">
+          <ion-title><img src="/assets/logo.png" width="200px" style="margin-top:8px" alt="" /></ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content color="menucontentbg">
+        <ion-list color="menucontentbg">
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages" color="menucontentbg">
+            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" color="menucontentbg">
+              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+              <ion-label>
+                {{p.title}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle class="exernalLink" auto-hide="false" href="#" onclick="window.open('https://www.bartender.com', '_system', 'location=yes'); return false;" color="menucontentbg">
+            <ion-item color="menucontentbg">
+              <ion-icon slot="start" name="planet"></ion-icon>
+              <ion-label>
+                Visit Website
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start" expand="block">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Bartender - Cocktail Builder
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card class="welcome-card">
+        <form (ngSubmit)="submit()">
+            <ion-item>
+              <ion-label position="floating">Search</ion-label>
+              <ion-input type="text" clearInput name="username" [(ngModel)]="data.username" required></ion-input>
+              <!--<ion-input type="hidden" name="ingradientids" [(ngModel)]="data.ingradientids"></ion-input>-->
+            </ion-item>
+            <ion-button 
+              color="main" 
+              expand="block"
+              type="submit">Search</ion-button>
+        </form>
+    </ion-card>
+
+    <ion-card class="welcome-card">
+      <ion-card-header>
+        <ion-card-title class="mbsc-bold">Popular Ingredients
+          <img class="less-items button" (click)="showmore()" src="/assets/icon/arrow-dropdown.svg" alt=""/>
+          <img class="more-items button" (click)="showless()" src="/assets/icon/arrow-dropup.svg" alt=""/>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="less-items" style="display: block">
+          <ion-button size="small" *ngFor="let pingradient of data.pingradientsData" (click)="addIngradient(pingradient.name, pingradient.id)" color="main">{{pingradient.name}}</ion-button>
+        </ion-card-content>
+      <ion-card-content class="more-items" style="display: none">
+        <ion-button size="small" *ngFor="let pingradient of data.pingradientsData" (click)="addIngradient(pingradient.name, pingradient.id)" color="main">{{pingradient.name}}</ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="data.response.status === 'Error'" color="alertdanger">        
+      <ion-card-content>
+      <b>{{data.response.message}}</b>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="data.response.status === 'Success'" style="box-shadow: none">        
+        <ion-card-content style="padding:0px;">
+        <h1>{{data.response.heading}}</h1>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card class="welcome-card" *ngFor="let cocktail of data.cocktails">
+	  <img src="{{cocktail.thumbnail}}" alt="" />
+      <ion-card-header>
+        <ion-card-title *ngIf="cocktail.title.rendered">{{cocktail.title.rendered}}</ion-card-title>
+        <ion-card-subtitle><span [innerHTML]="cocktail.content.rendered"></span></ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{cocktail.description}}</p>
+      </ion-card-content>
+    </ion-card>
+</ion-content>
